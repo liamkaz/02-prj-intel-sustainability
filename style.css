@@ -229,24 +229,21 @@ body {
 
     /* Make the hero heading smaller on mobile for better fit */
     .hero h1 {
-        font-size: 1.4em; /* Smaller heading size for mobile */
-        line-height: 1.2; /* Tighter line spacing */
+        font-size: 1.4em;
+        line-height: 1.2;
     }
 
-    /* Make all h2 headings smaller on mobile for consistency */
     .hero h2,
     h2 {
         font-size: 1.1em;
         line-height: 1.2;
     }
 
-    /* Make the hero paragraph text smaller on mobile */
     .hero p {
-        font-size: 1em; /* Smaller paragraph size for mobile */
+        font-size: 1em;
         line-height: 1.4;
     }
 
-    /* Make the hero divider smaller on mobile */
     .hero-divider {
         width: 50px;
         height: 3px;
@@ -258,25 +255,33 @@ body {
       Use flex layout with column direction.
     */
     .timeline-container {
-        display: flex;              /* Use flex layout */
-        flex-direction: column;     /* Stack cards vertically */
-        /* background: red;  Remove debug background */
-        width: 100%;                /* Take full width */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
         max-width: 100%;
-        align-items: center;        /* Center cards horizontally */
-        gap: 16px;                  /* Gap between cards */
-        overflow-x: hidden;         /* No horizontal scroll */
-        overflow-y: visible;        /* Allow vertical scroll if needed */
-        /* Removed scroll-snap-type for simplicity */
+        align-items: center;
+        gap: 16px;
+        overflow-x: hidden;
+        overflow-y: visible;
     }
 
     .timeline-card {
-        width: 90vw;                /* Leave some margin on the sides */
-        max-width: 340px;           /* Prevent card from being too wide */
+        width: 90vw;
+        max-width: 340px;
         min-width: 0;
         margin: 0 0 0 0;
         height: 220px;
         box-sizing: border-box;
         display: block;
+    }
+
+    /* Make timeline card images smaller and fully visible on mobile */
+    .card-image {
+        width: 100%;           /* Image fills the card width */
+        height: 90px;          /* Reduce image height for mobile */
+        object-fit: contain;   /* Show the whole image, even if it leaves space */
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 10px;
+        background: #e4e7ee;   /* Optional: add a background for letterboxing */
     }
 }
