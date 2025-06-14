@@ -227,14 +227,40 @@ body {
         padding: 10px 0;
     }
 
+    /* Make the hero heading smaller on mobile for better fit */
+    .hero h1 {
+        font-size: 1.4em; /* Smaller heading size for mobile */
+        line-height: 1.2; /* Tighter line spacing */
+    }
+
+    /* Make all h2 headings smaller on mobile for consistency */
+    .hero h2,
+    h2 {
+        font-size: 1.1em;
+        line-height: 1.2;
+    }
+
+    /* Make the hero paragraph text smaller on mobile */
+    .hero p {
+        font-size: 1em; /* Smaller paragraph size for mobile */
+        line-height: 1.4;
+    }
+
+    /* Make the hero divider smaller on mobile */
+    .hero-divider {
+        width: 50px;
+        height: 3px;
+        margin: 16px auto 12px auto;
+    }
+
     /* 
       Stack the timeline cards vertically on mobile devices.
       Use flex layout with column direction.
     */
     .timeline-container {
-        display: flex !important;              /* Use flex layout */
-        flex-direction: column !important;     /* Stack cards vertically */
-        background: red; /* Temporary background for visibility */
+        display: flex;              /* Use flex layout */
+        flex-direction: column;     /* Stack cards vertically */
+        /* background: red;  Remove debug background */
         width: 100%;                /* Take full width */
         max-width: 100%;
         align-items: center;        /* Center cards horizontally */
@@ -245,8 +271,8 @@ body {
     }
 
     .timeline-card {
-        width: 95vw;                /* Make cards almost full width */
-        max-width: 95vw;
+        width: 90vw;                /* Leave some margin on the sides */
+        max-width: 340px;           /* Prevent card from being too wide */
         min-width: 0;
         margin: 0 0 0 0;
         height: 220px;
