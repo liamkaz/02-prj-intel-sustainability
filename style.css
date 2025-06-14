@@ -70,7 +70,7 @@ body {
     align-items: stretch;
     overflow-x: auto;
     overflow-y: hidden;
-    /* Set width for exactly 4 cards + 3 gaps (now using 32px gap) */
+    /* Show exactly 4 cards and 3 gaps at once: 4*200px + 3*32px = 872px */
     width: calc(4 * 200px + 3 * 32px);
     max-width: calc(4 * 200px + 3 * 32px);
     scroll-snap-type: x mandatory; /* Enable horizontal scroll snap */
@@ -88,18 +88,19 @@ body {
     min-width: 200px;
     max-width: 200px;
     width: 200px;
-    height: 210px; /* Increased height for image and title */
-    flex: 0 0 auto; /* Prevent cards from shrinking */
+    height: 280px; /* Increased height to give more space for larger titles */
+    flex: 0 0 auto;
     position: relative;
     background: #fff; /* White card background */
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(21, 101, 192, 0.08);
-    padding: 24px 18px 32px 18px; /* Adjusted padding for new size */
+    padding: 24px 18px 32px 18px;
     text-align: left;
     /* Remove left border if present */
     border-left: none;
     overflow: hidden; /* Hide overflow for overlay effect */
     scroll-snap-align: start;
+    box-sizing: border-box; /* Make sure padding is included in width */
 }
 
 /* Add styling for the card images */
@@ -194,52 +195,62 @@ body {
     border-radius: 4px;
 }
 
-/* Responsive: On small screens, stack timeline items vertically */
+/* Tablet and below */
 @media (max-width: 900px) {
     .timeline-section {
-        /* Make sure the section stretches full width on small screens */
         padding: 20px 0;
         display: block;
     }
+
     .timeline-container {
-        flex-direction: column;           /* Stack cards vertically */
-        width: 100vw;                     /* Full viewport width */
+        flex-direction: column;
+        width: 100vw;
         max-width: 100vw;
-        align-items: center;              /* Center cards horizontally */
+        align-items: center;
         overflow-x: hidden;
         overflow-y: visible;
-        scroll-snap-type: y mandatory;    /* Enable vertical scroll snap */
+        scroll-snap-type: y mandatory;
         gap: 24px;
     }
+
     .timeline-card {
         min-width: 0;
         max-width: 95vw;
-        width: 95vw;                      /* Make cards fill most of the screen */
-        height: 230px;                    /* Adjust height for mobile */
+        width: 95vw;
+        height: 230px;
     }
 }
 
-/* Responsive: On small screens, switch to vertical scrolling */
+/* Mobile-specific refinements */
 @media (max-width: 600px) {
+    .timeline-section {
+        padding: 10px 0;
+    }
+
+    /* 
+      Stack the timeline cards vertically on mobile devices.
+      Use flex layout with column direction.
+    */
     .timeline-container {
-        flex-direction: column; /* Stack cards vertically */
-        overflow-x: hidden;
-        overflow-y: auto; /* Enable vertical scrolling */
-        align-items: center;
-        max-height: 70vh; /* Limit height for scrolling */
-        scroll-snap-type: y mandatory; /* Enable vertical scroll snap */
+        display: flex !important;              /* Use flex layout */
+        flex-direction: column !important;     /* Stack cards vertically */
+        background: red; /* Temporary background for visibility */
+        width: 100%;                /* Take full width */
+        max-width: 100%;
+        align-items: center;        /* Center cards horizontally */
+        gap: 16px;                  /* Gap between cards */
+        overflow-x: hidden;         /* No horizontal scroll */
+        overflow-y: visible;        /* Allow vertical scroll if needed */
+        /* Removed scroll-snap-type for simplicity */
     }
-.timeline-card {
-    min-width: 90vw;
-    max-width: 95vw;
-    width: 100%;
-    scroll-snap-align: start;
-}
+
     .timeline-card {
-        min-width: 90vw;
+        width: 95vw;                /* Make cards almost full width */
         max-width: 95vw;
-        width: 100%;
-        scroll-snap-align: start;
+        min-width: 0;
+        margin: 0 0 0 0;
+        height: 220px;
+        box-sizing: border-box;
+        display: block;
     }
-}
 }
