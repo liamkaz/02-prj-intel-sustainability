@@ -5,7 +5,7 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f0f2f5 0%, #fff 40%, #fff 100%);
+    background: linear-gradient(to bottom, #f0f2f5 0%, #e4e7ee 40%, #e4e7ee 100%);
     /* Light background for the page */
     min-height: 100vh; /* Ensure body takes at least full viewport height */
     display: flex;
@@ -58,7 +58,7 @@ body {
     /* Center the timeline section horizontally */
     display: flex;
     justify-content: center;
-    background: #f5f7fa; /* Light gray background */
+    background: #e4e7ee; /* Slightly darker gray */
     padding: 40px 0;
 }
 
@@ -66,13 +66,13 @@ body {
 .timeline-container {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    gap: 32px;         /* Increase gap to 32px for better spacing */
     align-items: stretch;
     overflow-x: auto;
     overflow-y: hidden;
     /* Set width for exactly 4 cards + 3 gaps */
-    width: 896px; /* 4 cards * 200px + 3 gaps * 24px = 896px */
-    max-width: 896px;
+    width: calc(4 * 200px + 3 * 24px);
+    max-width: calc(4 * 200px + 3 * 24px);
     scroll-snap-type: x mandatory; /* Enable horizontal scroll snap */
     margin: 0 auto; /* Center the container */
     scrollbar-width: none; /* Firefox */
@@ -139,7 +139,7 @@ body {
     color: #222;
 }
 
-/* Description overlay: hidden by default, appears on hover */
+/* Description overlay: add transform for dynamic appearance */
 .card-desc {
     display: block;
     position: absolute;
@@ -147,7 +147,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(21, 101, 192, 0.92); /* Blue overlay with transparency */
+    background: rgba(21, 101, 192, 0.75); /* More transparent blue overlay */
     color: #fff;
     font-size: 1em;
     border-radius: 10px;
@@ -155,8 +155,10 @@ body {
     box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.98);
-    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(30px) scale(0.96); /* Start lower and slightly smaller */
+    transition: 
+        opacity 0.3s,
+        transform 0.3s;
     z-index: 2;
     text-align: center;
     display: flex;
@@ -164,11 +166,11 @@ body {
     justify-content: center;
 }
 
-/* Show the description overlay on hover with fade and scale */
+/* Show the description overlay on hover with dynamic transform */
 .timeline-card:hover .card-desc {
     opacity: 1;
     pointer-events: auto;
-    transform: scale(1);
+    transform: translateY(0) scale(1); /* Move up and scale to normal */
 }
 
 /* Style for the timeline instruction */
@@ -177,7 +179,7 @@ body {
     padding: 18px 0 18px 0;
     font-size: 1.1em;
     color: #1565c0;
-    background: #f5f7fa;
+    background: #e4e7ee;
     letter-spacing: 0.5px;
     font-weight: 500;
     flex-shrink: 0;
@@ -192,24 +194,28 @@ body {
     border-radius: 4px;
 }
 
-/* Responsive: On small screens, show timeline items vertically */
+/* Responsive: On small screens, stack timeline items vertically */
 @media (max-width: 900px) {
     .timeline-section {
+        /* Make sure the section stretches full width on small screens */
         padding: 20px 0;
+        display: block;
     }
     .timeline-container {
-        flex-direction: column; /* Stack cards vertically */
-        width: 95vw;
-        max-width: 95vw;
-        scroll-snap-type: y mandatory;
-        align-items: center;
+        flex-direction: column;           /* Stack cards vertically */
+        width: 100vw;                     /* Full viewport width */
+        max-width: 100vw;
+        align-items: center;              /* Center cards horizontally */
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: visible;
+        scroll-snap-type: y mandatory;    /* Enable vertical scroll snap */
+        gap: 24px;
     }
     .timeline-card {
-        min-width: 90vw;
+        min-width: 0;
         max-width: 95vw;
-        width: 100%;
+        width: 95vw;                      /* Make cards fill most of the screen */
+        height: 230px;                    /* Adjust height for mobile */
     }
 }
 
