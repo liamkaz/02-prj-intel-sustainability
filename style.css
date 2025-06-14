@@ -70,9 +70,9 @@ body {
     align-items: stretch;
     overflow-x: auto;
     overflow-y: hidden;
-    /* Set width for exactly 4 cards + 3 gaps */
-    width: calc(4 * 200px + 3 * 24px);
-    max-width: calc(4 * 200px + 3 * 24px);
+    /* Set width for exactly 4 cards + 3 gaps (now using 32px gap) */
+    width: calc(4 * 200px + 3 * 32px);
+    max-width: calc(4 * 200px + 3 * 32px);
     scroll-snap-type: x mandatory; /* Enable horizontal scroll snap */
     margin: 0 auto; /* Center the container */
     scrollbar-width: none; /* Firefox */
@@ -241,4 +241,5 @@ body {
         width: 100%;
         scroll-snap-align: start;
     }
+}
 }
